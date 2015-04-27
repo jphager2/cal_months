@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.name        = 'cal_months'
   s.version     = '0.0.1'
 	s.date        = "#{Time.now.strftime("%Y-%m-%d")}"
-	s.homepage    = ''
+	s.homepage    = 'https://github.com/jphager2/cal_months'
   s.summary     = 'icalendar integration'
   s.description = 'A nice extension for quickly incorporating icalendar imports with default views'
   s.authors     = ['jphager2']
