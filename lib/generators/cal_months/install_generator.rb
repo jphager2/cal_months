@@ -11,6 +11,7 @@ module CalMonths
       end
 
       def copy_stylesheets
+        copy_file '../../../app/assets/javascripts/cal_months.js.coffee', 'app/assets/javascripts/cal_months.js.coffee'
         copy_file '../../../app/assets/stylesheets/cal_months.css.sass', 'app/assets/stylesheets/cal_months.css.sass'
         insert_into_file "app/assets/stylesheets/application#{detect_css_format[0]}", "\n#{detect_css_format[1]} require cal_months\n", :after => "require_self"
       end

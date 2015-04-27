@@ -1,0 +1,167 @@
+// Calendar Styles
+$calendar-primary:         #006BB3
+$calendar-primary-light:   #3084c0
+$calendar-secondary:       #a8a8a8
+$calendar-secondary-light: #f1f1f1
+$calendar-third:           green
+$calendar-fourth:          red
+
+$calendar-width:  550px
+
+// Calulated
+$calendar-height: $calendar-width * 375 / 550
+
+$day-size:         $calendar-width  / 2 / 10 * 8 / 7 - 4
+$date-size:        $calendar-height * 56 / 100
+
+$big-font-size:    $calendar-height * 70 / 375
+$large-font-size:  $calendar-height * 24 / 375
+$medium-font-size: $calendar-height * 20 / 375
+$normal-font-size: $calendar-height * 16 / 375 
+$small-font-size:  $calendar-height * 12 / 375 
+
+$large-vertical-padding:  $calendar-height * 45 / 375
+$medium-vertical-padding: $calendar-height * 15 / 375
+$small-vertical-padding:  $calendar-height * 5  / 375
+
+$small-horizontal-padding: $calendar-width * 10 / 550
+
+.calendar-container
+  .calendar
+    width: $calendar-width
+    height: $calendar-height
+    margin-top: 20px
+    display: inline-block
+    .upcoming-events
+      width: $calendar-width / 2
+      height: $calendar-height
+      background: $calendar-primary
+      padding: $small-vertical-padding $small-horizontal-padding $small-vertical-padding $small-horizontal-padding
+      display: inline-block
+      position: relative
+      color: white
+      .date
+        height: $date-size 
+        font-size: $big-font-size
+        text-align: center
+        .block-left, .block-right
+          height: $date-size
+      .event-info
+        height: $calendar-height * 115 / 375
+        font-size: $normal-font-size
+        padding: $small-horizontal-padding $medium-vertical-padding 0 $medium-vertical-padding
+        text-align: center
+        .name
+          font-weight: bold
+        .more-info
+          position: relative
+          .time
+            display: none
+        &:hover 
+          cursor: pointer
+          .time
+            font-size: $small-font-size
+            display: block
+            position: relative
+            font-weight: bold
+    .month
+      height: $calendar-height
+      width: $calendar-width / 2
+      border-top: 1px solid $calendar-secondary-light
+      border-bottom: 1px solid $calendar-secondary-light
+      border-right: 1px solid $calendar-secondary-light
+      padding: $small-vertical-padding $small-horizontal-padding $small-vertical-padding $small-horizontal-padding
+      position: relative
+      display: inline-block
+      background: white
+      a.navigation-left, a.navigation-right, .more-info a
+        color: $calendar-primary
+        &:hover, &:visited, &:focus
+          color: $calendar-primary
+      .calendar-grid
+        .block-left, .block-right
+          width: $calendar-width / 2 / 10
+        .grid
+          border-top: 1px solid $calendar-secondary
+          width: $calendar-width / 2 / 10 * 8
+          padding-top: $medium-vertical-padding
+          border-bottom-color: transparent
+          text-align: justify
+          .cal-head-row
+            height: $day-size
+            .day
+              width: $day-size 
+              height: $day-size
+              cursor: auto
+            .weekend
+              color: $calendar-primary
+          .cal-row
+            position: relative
+            margin-top: $small-vertical-padding
+            height: $day-size
+          .day
+            width: $day-size
+            height: $day-size
+            font-size: $normal-font-size
+            cursor: pointer
+            display: inline-block
+            border-radius: 100%
+            text-align: center
+            &.null
+              border: 1px solid transparent
+              color: transparent
+            &.past
+              color: $calendar-secondary
+              &.circled
+                border: 1px solid $calendar-secondary
+            &.circled
+              border: 1px solid $calendar-primary
+      .more-info
+        width: $calendar-width / 2
+        font-size: $small-font-size
+        padding: $small-horizontal-padding $medium-vertical-padding 0 $medium-vertical-padding
+        text-align: left
+        font-weight: bold
+              
+.calendar-container
+  .navigation
+    padding-top: $calendar-height * 4 / 30 / 10
+    height: $calendar-height * 4 / 30
+    font-size: $medium-font-size
+    text-align: center
+    .text
+      top: $calendar-height * 4 / 30 / 10 / 5 * 8
+      position: relative
+
+  .block-left, .block-right
+    width: $calendar-width / 2 * 0.15 
+    display: inline-block
+    position: absolute
+
+    .navigation-right, .navigation-left
+      font-size: $large-font-size
+      font-weight: bold
+
+  .block-left
+    left: 0
+  .block-right
+    right: 0
+
+  a.navigation-left, a.navigation-right, .more-info a
+    color: white
+    &:hover, &:visited, &:focus
+      text-decoration: none
+      color: white
+
+
+  .date .number, .calendar-grid .grid
+    height: $date-size
+    width: $calendar-width / 2 / 10 * 7
+    padding-top: $large-vertical-padding
+    position: relative
+    display: inline-block
+    border-bottom: 1px solid $calendar-primary-light
+    border-top: 1px solid $calendar-primary-light
+// END Calendar Styles
+
+
