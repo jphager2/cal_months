@@ -25,7 +25,7 @@ module CalMonths
       end
 
       def add_helper
-        insert_into_file "app/helpers/application_helper.rb", "include CalMonthsHelper", after: "module ApplicationHelper\n"
+        insert_into_file "app/helpers/application_helper.rb", "\n  include CalMonthsHelper\n", after: "module ApplicationHelper"
       end
 
       def copy_views
