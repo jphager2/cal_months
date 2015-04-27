@@ -1,7 +1,7 @@
 class CalMonth < ActiveRecord::Base
-  attr_accessible :event_data, :month, :year
 
-  validates_presence_of :month, :year
+  validates :month, presence: true
+  validates :year, presence: true
   validate :unique_month
 
   def self.find_month(year, month)
@@ -33,14 +33,23 @@ class CalMonth < ActiveRecord::Base
   def self.upcoming_events(date = nil)
     date  ||= Date.today
     month = where('year >= ? AND month >= ?', date.year, date.month)
-      .order(:year).order(:month).limit(1).first
-    events = month.date_events[(date.day-1)..-1].find { |day, data| 
-      !data.empty? && 
-        data.any? { |event| 
-          event[:end_datetime] > Time.zone.now
-        }
-    }.last.sort_by { |event| event[:start_datetime] }
-    events.delete_if { |event| event[:end_datetime] < Time.zone.now }
+      .order(:year).order(:month).limit(1).first 
+
+    if month
+      events = month.date_events[(date.day-1)..-1].find { |day, data| 
+        !data.empty? && 
+          data.any? { |event| 
+            event[:end_datetime] > Time.zone.now
+          }
+      }.last.sort_by { |event| event[:start_datetime] }
+      events.delete_if { |event| event[:end_datetime] < Time.zone.now }
+    else
+      [{ 
+        start_datetime: Date.today.to_datetime, 
+        end_datetime: Date.today.to_datetime, 
+        name: '' 
+      }]
+    end
   end
 
   def to_a

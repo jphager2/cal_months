@@ -29,9 +29,9 @@ module CalMonths
       end
 
       def copy_views
-        copy_file '../../../app/views/cal_months/_calendar.html.haml', 'app/views/cal_months/_calendar.html.haml'
-        copy_file '../../../app/views/cal_months/_month.html.haml', 'app/views/cal_months/_month.html.haml'
-        copy_file '../../../app/views/cal_months/_upcoming_events.html.haml', 'app/views/cal_months/_upcoming_events.html.haml'
+        copy_file '../../../app/views/cal_months/_calendar.html.erb', 'app/views/cal_months/_calendar.html.erb'
+        copy_file '../../../app/views/cal_months/_month.html.erb', 'app/views/cal_months/_month.html.erb'
+        copy_file '../../../app/views/cal_months/_upcoming_events.html.erb', 'app/views/cal_months/_upcoming_events.html.erb'
         copy_file '../../../app/views/cal_months/show.js.erb', 'app/views/cal_months/show.js.erb'
         copy_file '../../../app/views/cal_months/show_current_event.js.erb', 'app/views/cal_months/show_current_event.js.erb'
       end
