@@ -1,3 +1,4 @@
+*Rails 3*
 # Cal Months
 Allows for importing ical format calendars to the database with some default calendar views.
 
