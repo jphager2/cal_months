@@ -24,6 +24,10 @@ module CalMonths
         return ['.scss', ' //='] if File.exist?('app/assets/stylesheets/application.scss')
       end
 
+      def add_helper
+        insert_into_file "app/helpers/application_helper.rb", "include CalMonthsHelper", after: "module ApplicationHelper\n"
+      end
+
       def copy_views
         copy_file '../../../app/views/cal_months/_calendar.html.haml', 'app/views/cal_months/_calendar.html.haml'
         copy_file '../../../app/views/cal_months/_month.html.haml', 'app/views/cal_months/_month.html.haml'
