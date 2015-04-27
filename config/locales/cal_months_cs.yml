@@ -1,0 +1,44 @@
+cs:
+  cal_months:
+    calendar:
+    month:
+      month:
+        "1": Leden 
+        "2": Únor 
+        "3": Březen 
+        "4": Duben 
+        "5": Květen 
+        "6": Červen 
+        "7": Červenec
+        "8": Srpen 
+        "9": Září 
+        "10": Říjen 
+        "11": Listopad 
+        "12": Prosinec
+      day:
+        short:
+          "1": P
+          "2": Ú
+          "3": S
+          "4": Č
+          "5": P
+          "6": S
+          "7": N
+        long:
+          "1": Pondělí
+          "2": Úterý
+          "3": Středa
+          "4": Čtvrtek
+          "5": Pátek
+          "6": Sobota
+          "7": Neděle
+    upcoming_events:
+      day:
+        "1": Pondělí
+        "2": Úterý
+        "3": Středa
+        "4": Čtvrtek
+        "5": Pátek
+        "6": Sobota
+        "7": Neděle
+

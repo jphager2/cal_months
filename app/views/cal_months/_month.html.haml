@@ -1,0 +1,38 @@
+.pull-left.month
+  .navigation
+    .block-left
+      = link_to cal_month_path(*@cal_month.prev_month_array, format: :js), class: 'navigation-left', remote: true do
+        %span.glyphicon.glyphicon-chevron-left
+        
+    - year, month = @cal_month.to_a
+    %span.text= "#{t(".month.#{month}")} '#{year.to_s[-2..-1]}"
+    .block-right
+      = link_to cal_month_path(*@cal_month.next_month_array, format: :js), class: 'navigation-right', remote: true do
+        %span.glyphicon.glyphicon-chevron-right
+  .calendar-grid
+    .block-left
+    .grid
+      .cal-head-row
+        .day=t('.day.short.1')
+        .day=t('.day.short.2')
+        .day=t('.day.short.3')
+        .day=t('.day.short.4')
+        .day=t('.day.short.5')
+        .day.weekend=t('.day.short.6')
+        .day.weekend=t('.day.short.7')
+      - @cal_month.each_week do |week|
+        .cal-row
+          - week.each do |day, events|
+            - if @cal_month.to_date == Date.today.beginning_of_month
+              - past = Date.today.day > day.to_i
+            - else
+              - past = Date.today > @cal_month.to_date
+
+            - event_names = events.map {|event| truncate(event[:name], length: 34, omission: '...')}
+            - if event_names.length > 5
+              - event_names = event_names[0..3]
+              - event_names.push('<div class="text-center">...</div>')
+            %div{ class: "day #{"null" unless day} #{"circled" unless events.empty?} #{"past" if past && day}", data: { event_names: event_names } }="#{day || '0'}"
+
+    .block-right
+  .more-info
