@@ -1,3 +1,4 @@
+require 'icalendar'
 class CalEvent < ActiveRecord::Base
 
   attr_accessible :name, :description, :rdate, :system_uid, :system_updated_at

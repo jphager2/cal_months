@@ -5,7 +5,7 @@ files.collect! {|file| file.sub(current_dir + '/', '')}
 files.push('LICENSE')
 
 Gem::Specification.new do |s|
-  s.name        = 'rails_cal_months'
+  s.name        = 'cal_months'
   s.version     = '0.0.1'
 	s.date        = "#{Time.now.strftime("%Y-%m-%d")}"
 	s.homepage    = ''

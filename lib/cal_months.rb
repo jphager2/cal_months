@@ -1,5 +1,6 @@
-require_relative '../app/controllers/cal_months_controller'
-require_relative '../app/models/cal_event'
-require_relative '../app/models/cal_month'
+gem_app_path = File.expand_path('../..', __FILE__)
+autoload :CalMonthsController, "#{gem_app_path}/app/controllers/cal_months_controller"
+autoload :CalEvent, "#{gem_app_path}/app/models/cal_event"
+autoload :CalMonth, "#{gem_app_path}/app/models/cal_month"
 
-require_relative 'generators/cal_months/install_generator'
+autoload :InstallGenerator, "#{gem_app_path}lib/generators/cal_months/install_generator"
