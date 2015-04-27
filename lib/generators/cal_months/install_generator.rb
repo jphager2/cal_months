@@ -22,6 +22,11 @@ module CalMonths
         route "'/cal_months/calendar/:year-:month', to: 'cal_months#show', as: :cal_month"
         route "'/cal_months/current-events/:id', to: 'cal_months#show_current_event', as: :current_event"
       end
+
+      def add_migrations
+        copy_file '../../../db/migrate/create_cal_events.rb', "#{Time.now.to_i}_create_cal_events.rb"
+        copy_file '../../../db/migrate/create_cal_months.rb', "#{Time.now.to_i}_create_cal_months.rb"
+      end
     end
   end
 end
