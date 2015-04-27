@@ -1,7 +1,7 @@
 class CalMonth < ActiveRecord::Base
-  attr_accessible :event_data, :month, :year
 
-  validates_presence_of :month, :year
+  validates :month, presence: true
+  validates :year, presence: true
   validate :unique_month
 
   def self.find_month(year, month)
@@ -32,16 +32,38 @@ class CalMonth < ActiveRecord::Base
   # e.g. [{"id" => 1, "name" => "Next Event", "start_datetime" =>
   def self.upcoming_events(date = nil)
     date  ||= Date.today
-    month = where('year >= ? AND month >= ?', date.year, date.month)
-      .order(:year).order(:month).limit(1).first
-    events = month.date_events[(date.day-1)..-1].find { |day, data| 
+    months = where('year >= ? AND month >= ?', date.year, date.month)
+      .order(:year).order(:month).limit(2)
+
+    unless months.empty?
+      events = months.first.events_after_day(date.day)
+      if events.empty?
+        months.last.events_after_day
+      else
+        events
+      end
+    else
+      [{ 
+        start_datetime: Date.today.to_datetime, 
+        end_datetime: Date.today.to_datetime, 
+        name: '' 
+      }]
+    end
+  end
+
+  def events_after_day(day = 1)
+    eventful_day = date_events[(day-1)..-1].find { |day, data| 
       !data.empty? && 
         data.any? { |event| 
           event[:end_datetime] > Time.zone.now
         }
-    }.last.sort_by { |event| event[:start_datetime] }
+    }
+    return [] unless eventful_day
+
+    events = eventful_day.last.sort_by {|event| event[:start_datetime]}
     events.delete_if { |event| event[:end_datetime] < Time.zone.now }
   end
+
 
   def to_a
     [year, month]
