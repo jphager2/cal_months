@@ -65,29 +65,38 @@ class CalMonth < ActiveRecord::Base
     events.delete_if { |event| event[:end_datetime] < Time.zone.now }
   end
 
+  def next_cal_month
+    CalMonth.fetch_month(*next_month_array)
+  end
+
+  def prev_cal_month
+    CalMonth.fetch_month(*prev_month_array)
+  end
 
   def to_a
     [year, month]
   end
 
   def next_month_array
-    n_year  = year
-    n_month = month + 1
-    if n_month == 13
-      n_year += 1
-      n_month = 1
-    end
-    [n_year, n_month]
+    next_month = to_date + 1.month
+    [next_month.year, next_month.month]
   end
 
   def prev_month_array
-    n_year  = year
-    n_month = month - 1
-    if n_month == 0 
-      n_year -= 1
-      n_month = 12
-    end
-    [n_year, n_month]
+    prev_month = to_date - 1.month
+    [prev_month.year, prev_month.month]
+  end
+
+  def next_month_key
+    key_from_array(next_month_array)
+  end
+
+  def prev_month_key
+    key_from_array(prev_month_array)
+  end
+
+  def key
+    key_from_array(to_a)
   end
 
   def to_date
@@ -167,5 +176,10 @@ class CalMonth < ActiveRecord::Base
     if found.first
       errors[:base] << "Unique month required. If you are reading this, there is a bug in the creation or updating of CalMonth models." 
     end
+  end
+
+  def key_from_array(array)
+    app_name = Rails.application.class.to_s.split('::').first
+    "_#{app_name}_month_#{array.join('_'}"
   end
 end
