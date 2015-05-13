@@ -180,6 +180,6 @@ class CalMonth < ActiveRecord::Base
 
   def key_from_array(array)
     app_name = Rails.application.class.to_s.split('::').first
-    "_#{app_name}_month_#{array.join('_'}"
+    "_#{app_name}_month_#{array.join('_')}"
   end
 end
