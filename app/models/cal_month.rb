@@ -127,6 +127,10 @@ class CalMonth < ActiveRecord::Base
     update_attribute(:event_data, data.to_json)
   end
 
+  def replace_event_data(new_data)
+    update_attribute(:event_data, merge_default_data(new_data).to_json)
+  end
+
   def each_week
     date = to_date
     data = date_events
