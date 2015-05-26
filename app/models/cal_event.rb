@@ -94,7 +94,7 @@ class CalEvent < ActiveRecord::Base
 
   # array of array [[start_datetime, end_datetime],...]
   def datetimes
-    data = JSON.parse(rdate)
+    data = JSON.parse(rdate || "[]")
     data.map { |pair| pair.map { |str| DateTime.parse(str) } }
   end
 
