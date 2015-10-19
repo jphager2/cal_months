@@ -1,8 +1,6 @@
 class CalMonth < ActiveRecord::Base
 
-  attr_accessible :event_data, :month, :year
-
-  validates_presence_of :month, :year
+  validates :month, :year, presence: true
   validate :unique_month
 
   def self.find_month(year, month)

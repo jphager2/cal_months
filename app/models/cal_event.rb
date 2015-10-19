@@ -1,9 +1,7 @@
 require 'icalendar'
 class CalEvent < ActiveRecord::Base
 
-  attr_accessible :name, :description, :rdate, :system_uid, :system_updated_at
-
-  validates_presence_of :system_uid, :system_updated_at
+  validates :system_uid, :system_updated_at, presence: true
 
   scope :for_month, ->(year, month) {
     ids = all.map { |event| 
