@@ -1,3 +1,4 @@
+
 // Calendar Styles
 $calendar-primary:         #006BB3
 $calendar-primary-light:   #3084c0
@@ -12,13 +13,13 @@ $calendar-width:  550px
 $calendar-height: $calendar-width * 375 / 550
 
 $day-size:         $calendar-width  / 2 / 10 * 8 / 7 - 4
-$date-size:        $calendar-height * 56 / 100
+$date-size:        $calendar-height * 200 / 375
 
-$big-font-size:    $calendar-height * 70 / 375
-$large-font-size:  $calendar-height * 24 / 375
-$medium-font-size: $calendar-height * 20 / 375
-$normal-font-size: $calendar-height * 16 / 375 
-$small-font-size:  $calendar-height * 12 / 375 
+$big-font-size:    $calendar-height * 70  / 375
+$large-font-size:  $calendar-height * 24  / 375
+$medium-font-size: $calendar-height * 20  / 375
+$normal-font-size: $calendar-height * 16  / 375 
+$small-font-size:  $calendar-height * 12  / 375 
 
 $large-vertical-padding:  $calendar-height * 45 / 375
 $medium-vertical-padding: $calendar-height * 15 / 375
@@ -27,6 +28,8 @@ $small-vertical-padding:  $calendar-height * 5  / 375
 $small-horizontal-padding: $calendar-width * 10 / 550
 
 .calendar-container
+  div 
+    box-sizing: border-box
   .calendar
     width: $calendar-width
     height: $calendar-height

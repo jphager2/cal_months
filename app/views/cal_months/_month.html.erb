@@ -1,0 +1,50 @@
+<div class="pull-left month">
+  <div class="navigation">
+    <div class="block-left">
+      <%= link_to cal_month_path(*@cal_month.prev_month_array, format: :js), class: 'navigation-left', remote: true do %>
+        <span class="glyphicon glyphicon-chevron-left"></span>
+      <% end %>
+    </div>
+    <% year, month = @cal_month.to_a %>
+    <span class="text"><%= "#{t(".month.#{month}")} '#{year.to_s[-2..-1]}" %></span>
+    <div class="block-right">
+      <%= link_to cal_month_path(*@cal_month.next_month_array, format: :js), class: 'navigation-right', remote: true do %>
+        <span class="glyphicon glyphicon-chevron-right"></span>
+      <% end %>
+    </div>
+  </div>
+  <div class="calendar-grid">
+    <div class="block-left"></div>
+    <div class="grid">
+      <div class="cal-head-row">
+        <div class="day"><%=t('.day.short.1') %></div>
+        <div class="day"><%=t('.day.short.2') %></div>
+        <div class="day"><%=t('.day.short.3') %></div>
+        <div class="day"><%=t('.day.short.4') %></div>
+        <div class="day"><%=t('.day.short.5') %></div>
+        <div class="day weekend"><%=t('.day.short.6') %></div>
+        <div class="day weekend"><%=t('.day.short.7') %></div>
+      </div>
+      <% @cal_month.each_week do |week| %>
+        <div class="cal-row">
+          <% week.each do |day, events| %>
+            <% if @cal_month.to_date == Date.today.beginning_of_month %>
+              <% past = Date.today.day > day.to_i %>
+            <% else %>
+              <% past = Date.today > @cal_month.to_date %>
+            <% end %>
+
+            <% event_names = events.map {|event| truncate(event[:name], length: 34, omission: '...')} %>
+            <% if event_names.length > 5 %>
+              <% event_names = event_names[0..3] %>
+              <% event_names.push('<div class="text-center">...</div>') %>
+            <% end %>
+            <%= content_tag :div, day || '0', class: "day #{"null" unless day} #{"circled" unless events.empty?} #{"past" if past && day}", data: { event_names: event_names } %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+    <div class="block-right"></div>
+  </div>
+  <div class="more-info"></div>
+</div>

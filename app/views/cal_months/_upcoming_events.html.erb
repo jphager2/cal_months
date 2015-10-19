@@ -1,0 +1,34 @@
+<div class="pull-left upcoming-events">
+  <div class="navigation">
+    <div class="block-left">
+      <% unless CalMonth.upcoming_events.first == @current_event %>
+        <%= link_to current_event_path(CalMonth.upcoming_events.index(@current_event) - 1, format: :js), class: 'navigation-left', remote: true do %>
+          <span class="glyphicon glyphicon-chevron-left"></span>
+        <% end %>
+      <% end %>
+    </div>
+    <span class="text"><%= t(".day.#{@current_event[:start_datetime].wday}") %></span>
+    <div class="block-right">
+      <% unless CalMonth.upcoming_events.last == @current_event %>
+        <%= link_to current_event_path(CalMonth.upcoming_events.index(@current_event) + 1, format: :js), class: 'navigation-right', remote: true do %>
+          <span class="glyphicon glyphicon-chevron-right"></span>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class="date">
+    <div class="block-left"></div>
+    <div class="number">
+      <span class="text"><%= @current_event[:start_datetime].day %></span>
+    </div>
+    <div class="block-right"></div>
+  </div>
+  <div class="event-info">
+    <div class="name"><%= truncate(@current_event[:name], length: 45, omission: '...') %></div>
+    <div class="more-info">
+      <span><%= ". . ." %></span>
+      <div class="time"><%= pretty_from_to(@current_event) %></div>
+    </div>
+  </div>
+</div>
+
