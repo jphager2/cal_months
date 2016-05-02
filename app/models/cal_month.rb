@@ -132,7 +132,8 @@ class CalMonth < ActiveRecord::Base
   def each_week
     date = to_date
     data = date_events
-    day_of_week_offset = date.wday - 1
+    # Because Sunday is 0 (but shown as end of week)
+    day_of_week_offset = (date.wday + 6) % 7
     day_of_week_offset.times { data.unshift([nil, []]) }
 
     if block_given?

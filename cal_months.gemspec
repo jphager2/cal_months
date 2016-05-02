@@ -6,8 +6,8 @@ files.collect! {|file| file.sub(current_dir + '/', '')}
 files.push('LICENSE')
 
 Gem::Specification.new do |s|
-  s.name        = 'cal_months_rails4'
-  s.version     = '1.2.1'
+  s.name        = 'cal_months'
+  s.version     = '1.2.2'
 	s.date        = "#{Time.now.strftime("%Y-%m-%d")}"
 	s.homepage    = 'https://github.com/jphager2/cal_months'
   s.summary     = 'icalendar integration'
