@@ -7,7 +7,7 @@ files.push('LICENSE')
 
 Gem::Specification.new do |s|
   s.name        = 'cal_months_rails3'
-  s.version     = '1.2.1'
+  s.version     = '1.2.2'
 	s.date        = "#{Time.now.strftime("%Y-%m-%d")}"
 	s.homepage    = 'https://github.com/jphager2/cal_months'
   s.summary     = 'icalendar integration'
